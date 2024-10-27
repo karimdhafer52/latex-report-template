@@ -1,0 +1,604 @@
+% À implémenter:
+% - Numérotation des page des listes
+% - Configurer l'affichage des noms de liste des figures (Fig 1 - ...)
+% - Personnaliser les titres des listes (centrés, plus hauts)
+% - Fixer les liens hypertextes des figures (rediriger vers l'image non pas la légende)
+
+
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8]{inputenc}   % UTF-8 encoding support
+\usepackage[english,french,arabic]{babel} % Language management
+\usepackage{tcolorbox}        % Colored text boxes
+\usepackage{xcolor}           % Color management
+\usepackage{enumitem}         % Customizable lists
+\usepackage{graphicx}         % Image inclusion
+\usepackage{geometry}         % Page layout settings
+\usepackage{polyglossia}      % Multilingual support
+\usepackage{float}            % Improved float handling
+\usepackage{placeins}         % Float control
+\usepackage{ragged2e}         % Improved text justification
+\usepackage{listings}         % Code listings
+\usepackage{tocloft}          % Customizing TOC
+\usepackage{hyperref}         % Hyperlinks in documents
+\usepackage{setspace}         % Line spacing control
+\usepackage{fontspec}         % Font selection
+\newfontfamily\arabicfont[Script=Arabic]{Amiri}
+\setmainlanguage{french}
+\setotherlanguage{arabic}
+
+
+
+% Adjust page margins
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+% Warning custom box creation
+\newtcolorbox{warningbox}{colback=orange!5!white, colframe=orange!75!black, 
+  title=Attention}
+% Customize code style
+\lstset{
+    language=Java, % définit la langue
+    basicstyle=\ttfamily\small, % style de base
+    keywordstyle=\color{blue}\bfseries, % style des mots-clés
+    commentstyle=\color{gray}\itshape, % style des commentaires
+    stringstyle=\color{orange}, % style des chaînes de caractères
+    numbers=left, % numéroter les lignes
+    numberstyle=\tiny\color{gray}, % style des numéros
+    stepnumber=1,
+    tabsize=4, % taille des tabulations
+    breaklines=true, % couper les lignes longues
+    showstringspaces=false, % ne pas montrer les espaces dans les chaînes
+}
+
+
+
+\thispagestyle{empty}
+\begin{document}
+
+\noindent  % Prevent indent before the minipages
+\begin{minipage}[t]{0.3\textwidth}
+    \vspace{-3.7cm} % Adjust this value to raise the text
+    \begin{flushleft}
+    \textbf{République Tunisienne} \\ 
+    \textbf{Ministère de l'Enseignement Supérieur} \\ 
+    \textbf{et de la Recherche Scientifique} \\
+    \end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.4\textwidth}
+    \begin{center}
+        \includegraphics[width=4cm]{images/ISET Rades Logo (Adjusted).jpg}
+    \end{center}
+\end{minipage}
+\begin{minipage}[t]{0.3\textwidth}
+    \vspace{-3.7cm}
+    \begin{flushright}
+    \textbf{\textarabic{الجمهورية التونسية}} \\ 
+    \textbf{\textarabic{وزارة التعليم العالي}} \\ 
+    \textbf{\textarabic{والبحث العلمي}} \\
+    \end{flushright}
+\end{minipage}
+
+\vspace{2cm}
+\setlength{\fboxsep}{12pt} % Adjust box seperation from text
+
+\begin{center}
+    \fbox{\parbox{0.9\textwidth}{\centering
+        \fontsize{24pt}{28pt}\textbf{Compte rendu TP n°2} \\[0.5cm]
+        \fontsize{24pt}{28pt}\textbf{Application Mobile sur Android}
+    }} \\[1.5cm]
+\end{center}
+
+\centering
+\includegraphics[width=0.5\textwidth]{images/Android Studio Logo.png}
+\vspace{-0.1cm} 
+\vspace{1cm} 
+\begin{minipage}[t]{0.6\textwidth}
+    \begin{center}
+        \large
+        \textbf{Auteur} \\ 
+        Karim Dhafer \\[20pt]
+        \textbf{Matière} \\ 
+        Développement Mobile sur Android \\[20pt]
+        \textbf{Classe} \\ 
+        L3-DSI3 \\[20pt]
+        \textbf{Année universitaire} \\ 
+        2024-2025 \\
+    \end{center}
+\end{minipage}
+
+\flushleft
+\newpage
+
+\renewcommand{\contentsname}{Sommaire}
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+\renewcommand{\listfigurename}{Liste des figures}
+\listoffigures
+\thispagestyle{empty}
+
+\newpage
+\pagenumbering{arabic}
+% Introduction
+\section*{Introduction}
+\addcontentsline{toc}{section}{Introduction}
+\begin{justify}
+    Ce projet se concentre sur le développement d'une application mobile innovate qui permet de calculer l'IMG d'une personne fournissant une interface conviviale, réalisée avec Android Studio en utilisant le langage de programmation Java. \\
+    Cette application a été conçue dans le but de pratiquer le développement mobile sur la platforme Android.
+\end{justify}
+
+\subsection*{Objectifs}
+\addcontentsline{toc}{subsection}{Objectifs}
+\begin{itemize}
+    \item Construction des interfaces.
+    \item Codage en Java sous Android suivant le MVC.
+    \item Réalisation des tests unitaires.
+    \item Génération automatique de la documentation avec JavaDoc.
+    \item Codage des actions événementielles.
+    \item Exploit des ressources et des objets graphiques dans le code.
+    \item Construction d'une application mobile Android simple et fonctionel.
+\end{itemize}
+
+\newpage
+
+\section*{1. Construction de l'interface}
+\addcontentsline{toc}{section}{1. Construction de l'interface}
+Dans cette partie, on va apprendre comment construire l'interface graphique en utilisant les outils d'Android Studio et en manipulant le fichier \textbf{activity\_main.xml}
+
+\subsection*{1.1 Manipulation des composants UI et leur arborescence}
+\addcontentsline{toc}{subsection}{1.1 Manipulation des composants UI et leur arborescence}
+\begin{itemize}
+    \item Double-cliquer sur les composantes de la palette à utiliser sans les lâcher, puis les faire glisser vers le Component Tree sous le conteneur ConstraintLayout.
+\end{itemize}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/Disposition Composants.png} 
+    \caption{Palette et arborescence composants Android Studio}
+    \label{fig:Palette} 
+\end{figure}
+
+\begin{justify}
+    \begin{itemize}
+        \item On a intérêt à disposer 3 grands composants alignés horizontalement donc on ajoute une LinearLayout Vertical qui va les contenir. Puis en glissant ces trois-là, on les dépose sous le LinearLayout Vertical.
+    \end{itemize}
+\end{justify}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/LinearLayouts.png} 
+    \caption{Emplacement LinearLayouts}
+    \label{fig:LinearLayouts} 
+\end{figure}
+\FloatBarrier
+
+\begin{itemize}
+    \item Ajuster les tailles des composants pour qu'elles soient égales en les sélectionnant tous en même temps, puis en cliquant sur ce bouton en dessous.
+\end{itemize}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/Distribute Weight Evenly Btn.png} 
+    \caption{Bouton de distribution de taille égale entre les composants}
+    \label{fig:DistributeWeight} 
+\end{figure}
+\FloatBarrier
+
+\begin{justify}
+    \begin{itemize}
+        \item Appliquer tout ce qui est avant sur tous les autres composants ajouter, en faisant attention à mettre les composants désirés sous la composante mère propre afin d’avoir l’arborescence des composantes correcte.
+    \end{itemize}
+\end{justify}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/Final Components Tree.png} 
+    \caption{Arborescence finale des composants UI} 
+    \label{fig:FinalComponentsTree} 
+\end{figure}
+\FloatBarrier
+
+\begin{warningbox}
+    \begin{itemize}[label=\textbf{$\rightarrow$}]
+        \item Il faut parcourir la section 2 (ci-dessous) avant d’intégrer la composante Image dans l’interface.
+        \item Il ne faut pas déplacer une composante sous une composante mère inappropriée, car cela engendrera des problèmes d’emplacement des composantes dans l’interface, ça peut être corriger en glissant la composante sous sa mère. 
+    \end{itemize}
+\end{warningbox}
+
+\vspace{1cm}
+
+\subsection*{1.2 Manipulation de la composante ImageView}
+\addcontentsline{toc}{subsection}{1.2 Manipulation de la composante ImageView}
+Dans cette partie, on va apprendre comment introduire des images dans l'interface de l'application. \\
+\begin{enumerate}
+    \item[1.] Télécharger les images à partir de n'importe quelle source.
+    \item[2.] Ajouter ces images sous le dossier \textbf{drawable} pour qu’elles seront mise en considération comme des ressources dans l'application.
+    \item[3.] Ajouter la composante \textbf{ImageView}.
+    \item[4.] Ajouter l'image à partir du fenêtre qui a été ouverte.
+\end{enumerate}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/Pick Ressource Window.png} 
+    \caption{Fentêtre de séléction des ressource} 
+    \label{fig:PickRessourceWindow} 
+\end{figure}
+\FloatBarrier
+
+\vspace{1cm}
+
+\subsection*{1.3 Gestion des attributs}
+\addcontentsline{toc}{subsection}{1.3 Gestion des attributs}
+Dans cette partie, on a interêt à savoir comment manipuler les attributs des composants pour qu'ils suivent la forme désiré.
+\begin{itemize}
+    
+    \item
+        \begin{justify}Changer les propriétés gravity et layout\_gravity des composants qui sont responsables de la position du contenu des objets graphiques. \\
+        \hspace{0.5cm}\textbf{gravity}: La position du contenu par rapport à l'élément lui-même. \\
+        \hspace{0.5cm}\textbf{layout\_gravity}: La position du contenu par rapport à l'élément parent.
+        \end{justify}
+\end{itemize}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/Component Attributes.png} 
+    \caption{Champ d'attribut texte}
+    \label{fig:ComponentText} 
+\end{figure}
+\FloatBarrier
+
+\begin{itemize}
+    \item Pour afficher le texte désiré, on peut Éditer les textes à afficher sur ces composants (sauf l’image et les champs de nombre).
+\end{itemize}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/Component Text.png} 
+    \caption{Champ d'attribut texte}
+    \label{fig:ComponentTextAttribute} 
+\end{figure}
+\FloatBarrier
+
+\begin{justify}
+    \begin{itemize}
+        \item Pour exploiter les composants dans le code, on peut leur assigner des ID spécifiques et significatifs pour faciliter le codage et rendre le code plus lisible.
+    \end{itemize}
+\end{justify}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/Component ID.png} 
+    \caption{Champ d'attribut id}
+    \label{fig:ComponentID} 
+\end{figure}
+\FloatBarrier
+
+\vspace{1cm}
+
+\subsection*{1.4 Interface finale}
+\addcontentsline{toc}{subsection}{1.4 Interface finale}
+À ce stade, il faut avoir une interface similaire à celle au-dessous.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.28\textwidth]{images/Final UI.png} 
+    \caption{Interface finale}
+    \label{fig:FinalUI} 
+\end{figure}
+\FloatBarrier
+
+
+\section*{2. Codage en Java sous Android suivant le MVC}
+\addcontentsline{toc}{section}{2. Codage en Java sous Android suivant le MVC}
+\begin{justify}
+    Tout d'abord, pour suivre les normes de l'architecture MVC, on crée 3 packages; controleur, modele et vue. Puis on transfère le fichier \textbf{MainActivity.java} dans le package vue car il est le responsable à l'affichage de l'application. Maintenant on peut commencer le codage du partie modèle.
+\end{justify}
+
+\subsection*{2.1 Codage de la partie Modèle}
+\addcontentsline{toc}{subsection}{2.1 Codage de la partie Modèle}
+\begin{justify}
+    Dans cette partie, il faut créer la classe Java \textbf{Profil} qui est la classe contenant les attributs du profil, afin de calculer l'IMG et d'afficher l'image qui lui correspond.
+\end{justify}
+\begin{lstlisting}
+    public class Profil {
+    ... // Déclaration des constantes et des attributs de la classe. 
+    public Profil(Integer poids, Integer taille, Integer age, Integer sexe) {
+        this.sexe = sexe;
+        this.age = age;
+        this.taille = taille;
+        this.poids = poids;
+        this.calculIMG();
+        this.resultIMG();
+    }
+    ... // Getters et Setters.
+    private void calculIMG() {
+        float tailleM = ((float)taille) / 100;
+        this.img = (float) ((1.2 * poids / (tailleM * tailleM)) + (0.23 * age) - (10.83 * sexe) - 5.4);
+    }
+
+    private void resultIMG() {
+        Integer min;
+        Integer max;
+        if (sexe == 0) { // femme
+            min = minFemme;
+            max = maxFemme;
+        } else {
+            min = minHomme;
+            max = maxHomme;
+        }
+
+        message = "normal";
+        if (img < min) {
+            message = "trop faible";
+        } else {
+            if (img > max) {
+                message = "trop élevé";
+            }
+        }
+    }
+\end{lstlisting}
+
+
+\subsection*{2.2 Codage de la partie Controleur}
+\addcontentsline{toc}{subsection}{2.2 Codage de la partie Controleur}
+\begin{justify}
+    Dans cette section, on doit créer la classe Java \textbf{Controle} sous le package \textbf{Controleur}. Cette classe joue un rôle central dans notre application en gérant l'interaction entre l'interface utilisateur et la logique métier en suivant le modèle \textbf{Singleton}. Elle a d'objectif d'assurer que les données du profil sont correctement créées et accessibles à partir d'autres parties de l'application.
+\end{justify}
+\begin{lstlisting}
+    public final class Controle {
+        private static Controle instance = null;
+        private Profil profil;
+    
+        private Controle() {
+            super();
+        }
+
+        public static final Controle getInstance() {
+            if (Controle.instance == null) {
+                Controle.instance = new Controle();
+            }
+            return Controle.instance;
+        }
+        
+        public void creerProfil(Integer poids, Integer taille, Integer age, Integer sexe) {
+            profil = new Profil(poids, taille, age, sexe);
+        }
+    
+        public float getImg() {
+            return profil.getImg();
+        }
+    
+        public String getMessage() {
+            return profil.getMessage();
+        }
+    }
+\end{lstlisting}
+
+\subsection*{2.3 Codage de la partie Vue}
+\addcontentsline{toc}{subsection}{2.3 Codage de la partie Vue}
+\begin{justify}
+    Dans cette section, on doit coder la classe Java \textbf{MainActivity} pour gérer les actions événmentielles de l'utilisateur.
+    \begin{itemize}
+        \item Au début, on doit réécrire la méthode \textbf{onCreate()} qui est la responsable d'afficher l'interface lors du lancement
+        \item puis, pour afficher l'interface \textbf{activity\_main.xml} dans l'écran, on doit utiliser la méthode \textbf{setContentView(R.layout.activity\_main);}
+        \begin{lstlisting}
+            protected void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+                EdgeToEdge.enable(this);
+                setContentView(R.layout.activity_main);
+                init();
+                this.controle = Controle.getInstance();
+                ecouteCalcul();
+                ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+                    Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                    v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                    return insets;
+                });
+            }
+        \end{lstlisting}
+        
+        \item Maintenant, il faut initialiser les champs à manipuler par relier les variables Java avec les objets graphiques créés.
+        \begin{lstlisting}
+            // Propriétés
+            private EditText txtPoids;
+            private EditText txtTaille;
+            private EditText txtAge;
+            private RadioButton rdHomme;
+            private TextView lblIMG;
+            private ImageView imgSmiley;
+            private Controle controle;
+        
+            private void init() {
+                txtPoids = (EditText) findViewById(R.id.txtPoids);
+                txtTaille = (EditText) findViewById(R.id.txtTaille);
+                txtAge = (EditText) findViewById(R.id.txtAge);
+                rdHomme = (RadioButton) findViewById(R.id.rdHomme);
+                lblIMG = (TextView) findViewById(R.id.lblIMG);
+                imgSmiley = (ImageView) findViewById(R.id.imgSmiley);
+            }
+        \end{lstlisting}
+
+        \item En fin, pour afficher le résultat aprés le clic sur le bouton calculer, il faut écrire un code qui représente un listener (un écouteur) qui écoute les événements de cliques sur le bouton et qui éxecute la méthode \textbf{afficheResult()}.
+        \begin{lstlisting}
+            private void ecouteCalcul() {
+                ((Button) findViewById(R.id.btnCalc)).setOnClickListener(new Button.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Toast.makeText(MainActivity.this, "test", Toast.LENGTH_SHORT).show();
+                        // Log.d("message", "clic sur le btn *************");
+                        Integer poids=0;
+                        Integer taille=0;
+                        Integer age=0;
+                        Integer sexe=0;
+                        try {
+                            poids = Integer.parseInt(txtPoids.getText().toString());
+                            taille = Integer.parseInt(txtTaille.getText().toString());
+                            age = Integer.parseInt(txtAge.getText().toString());
+                        } catch (Exception e) {};
+                        if (rdHomme.isChecked()) {
+                            sexe = 1;
+                        }
+                        //contrôle des données saisies
+                        if (poids == 0 || taille == 0 || age == 0) {
+                            Toast.makeText(MainActivity.this, "Saisie incorrecte", Toast.LENGTH_SHORT).show();
+                        } else {
+                            afficheResult(poids, taille, age, sexe);
+                        }
+                    }
+                });
+            }
+        
+            private void afficheResult(Integer poids, Integer taille, Integer age, Integer sexe) {
+                // Création du profil et récupération des infos
+                this.controle.creerProfil(poids, taille, age, sexe);
+                float img = this.controle.getImg();
+                String message = this.controle.getMessage();
+        
+                // affichage
+                if (message == "normal") {
+                    imgSmiley.setImageResource(R.drawable.normal);
+                    lblIMG.setTextColor(Color.GREEN);
+                } else {
+                    lblIMG.setTextColor(Color.RED);
+                    if (message == "trop faible") {
+                        imgSmiley.setImageResource(R.drawable.skinny);
+                    } else {
+                        imgSmiley.setImageResource(R.drawable.fat);
+                    }
+                }
+                lblIMG.setText(String.format("%.01f", img) + " : IMG " + message);
+            }
+        \end{lstlisting}
+    \end{itemize}
+\end{justify}
+
+\section*{3. Réalisation des tests unitaires}
+\addcontentsline{toc}{section}{3. Réalisation des tests unitaires}
+\begin{justify}
+    Dans cette partie, on va apprendre comment tester les fonctions principales dans le code en utilisant \textbf{JUnit} qui est un framework conçue pour faciliter le testage des codes écrites en Java. Ces tests sont appelés des \textbf{tests unitaires}.
+\end{justify}
+
+\subsection*{3.1 Initialisation de la classe test}
+\begin{enumerate}
+    \item[1.] Se positionner sur la classe à tester.
+    \item[2.] Cliquer sur \texttt{\textbf{\textcolor{blue}{CTRL+SHIFT+T}}} ou parcourir à partir de la barre d'outil \textbf{Navigate > Test}.
+    \item[3.] Cliquer sur \textbf{Create new test}.
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{images/Create Test.png}
+        \caption{Création du test}
+        \label{fig:CreateTest}
+    \end{figure}
+    \FloatBarrier
+    
+    \item[4.] 
+        \begin{justify} Choisir la librairie voulue, puis séléctionner les méthodes à tester en laissant le nom intacte (c'est une convention de nommage que le nom de la classe test sera sur la forme Class\_name suivi du mot Test), enfin cliquer sur créer.
+        \end{justify}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.4\textwidth]{images/Create Test Props.png}
+        \caption{Propriétés de création du test}
+        \label{fig:CreateTestProps}
+    \end{figure}
+    \FloatBarrier
+    
+    \item[5.] Ne rien changer dans le chemin car c'est automatiquement bien positionné.
+\end{enumerate}
+
+
+\subsection*{3.2 Codage de la classe ProfilTest}
+\addcontentsline{toc}{subsection}{3.2 Codage de la classe ProfilTest}
+\begin{justify}
+    Afin de tester les méthodes de la classe Profil, on doit initialiser des variables conçues par les tests comme le profil à tester, son résultat et image attendues. Puis en utilisant les méthodes prédifinies et les annotations du Framework, on peut les tester correctement". \\
+    \hspace{1em}\textbf{@Test}: annotation pour dire que la méthode ci-dessous est un test unitaire. \\
+    \hspace{1em}\textbf{assertEquals}: méthode prédifinie pour comparer le résultat attendue avec le résultat actuel retourné par la méthode de la classe Profil.
+\end{justify}
+\begin{lstlisting}
+    public class ProfilTest {
+    // Création du profil avec ses résultats correctes 
+    private Profil profil = new Profil(67, 165, 35, 0);
+    private float img = (float) 32.2;
+    private String message = "trop élevé";
+
+    @Test
+    public void getImg() {
+        assertEquals(img, profil.getImg(), (float) 0.1);
+    }
+
+    @Test
+    public void getMessage() {
+        assertEquals(message, profil.getMessage());
+    }
+\end{lstlisting}
+\vspace{0.5cm}
+Finalement, le résultat doit apparaître comme ça pour un test validé.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/Test Result.png}
+    \caption{Résultat du test}
+    \label{fig:TestResult}
+\end{figure}
+\FloatBarrier
+
+
+\section*{4. Génération de la documentation avec JavaDoc}
+\addcontentsline{toc}{section}{4. Génération de la documentation avec JavaDoc}
+\begin{justify}
+    Dans cette partie, on va apprendre comment générer automatiquement la documentation de notre application Java en utilisant \textbf{Javadoc}, un framework Populaire dédié à la documentation des applications Java.
+\end{justify}
+
+\subsection*{4.1 Écriture des commentaires du programme}
+\addcontentsline{toc}{subsection}{4.1 Écriture des commentaires du programme}
+\begin{justify}
+    Au début, il faut commenter les codes Java pour que le framework génére une documentation adéquate, prenant l'exemple de la méthode \textbf{creerProfil}.
+\end{justify}
+\begin{lstlisting}
+    /**
+     * Création du profil
+     * @param poids
+     * @param taille en cm
+     * @param age
+     * @param sexe 1 pour homme et 0 pour femme
+     */
+    public void creerProfil(Integer poids, Integer taille, Integer age, Integer sexe) {
+        profil = new Profil(poids, taille, age, sexe);
+    }
+\end{lstlisting}
+\subsection*{4.2 Génération de la documentation}
+\addcontentsline{toc}{subsection}{4.2 Génération de la documentation}
+\begin{enumerate}
+    \item[1.] Ajouter un dossier \textbf{nom\_de\_votre\_appDoc} dans le même dossier contenant l'application.
+    \item[2.] Cliquer sur le package \textbf{com.example.nom\_de\_votre\_app}.
+    \item[3.] Naviger vers la barre d'outil \textbf{Tools > Generate JavaDoc}.
+    \item[4.] Configurer les propriétés de la fenêtre JavaDoc en changeant le chemin au dossier créé.
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.4\textwidth]{images/JavaDoc Window.png}
+        \caption{Fenêtre JavaDoc}
+        \label{fig:JavaDocWindow}
+    \end{figure}
+    \FloatBarrier
+
+    \item[] \textbf{Le résultat sera :}
+    \begin{justify}
+        \textit{Des fichiers HTML permettant de naviguer entre la documentation des fonctionnalités de notre application.}
+    \end{justify}
+
+    \begin{tcolorbox}[title=Intérêt]
+        Le vrai intérêt de cette documentation est de permettre aux autres de comprendre notre application sans avoir besoin de consulter le code.
+    \end{tcolorbox}
+\end{enumerate}
+
+\section*{5. Application finale}
+\addcontentsline{toc}{section}{5. Application finale}
+\begin{justify}
+    Dernier mais non des moindres, après avoir compris ces notions et les avoir pratiquées dans le monde réel, nous aurons cette application qui calcule l'IMG fournissant une interface mobile conviviale.
+\end{justify}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/Final App Result.png}
+    \caption{Résultat de application finale}
+    \label{fig:FinalAppResult}
+\end{figure}
+\FloatBarrier
+
+
+\newpage
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
+\begin{justify}
+    En somme, ce rapport a permis de présenter les différentes étapes de développement et de mise en œuvre de notre application mobile. On a exploré les outils de \textbf{Android Studio}, l'architecture du projet, les différents frameworks à utiliser pour améliorer le projet.
+\end{justify}
+
+
+\end{document}
