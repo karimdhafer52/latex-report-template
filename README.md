@@ -1,5 +1,7 @@
 # latex-intro:
-This is my 1St LaTeX projet in which I tried to use and implement the maximum of LaTeX basics, It will be a great project for discovering and understanding LaTeX coding.
+This is my first LaTeX project, where I aimed to use and implement fundamental LaTeX features, making it a valuable exercise for discovering and understanding LaTeX coding.
+
+This practice is based on an academic project involving the creation of a report for a workshop on developing an Android mobile app in Android Studio that calculates IMG.
 
 ## Project Components
 - **Images Folder:** Contains all images used in the document, which enhance visual representation and understanding.
@@ -13,6 +15,8 @@ This is my 1St LaTeX projet in which I tried to use and implement the maximum of
 - **Customization:** Exploring various packages to enhance document functionality and appearance.
 
 ## Conclusion
-This project serves as an introduction to LaTeX coding, showcasing the ability to create structured and visually appealing documents. The lessons learned through this process include both the technical aspects of LaTeX coding and the practical applications of these skills.
+This project is an introduction to LaTeX coding, showcasing the ability to create structured and visually appealing documents. The lessons learned through this process include the technical aspects of LaTeX coding and the practical applications of these skills.
 
 Feel free to explore the code or [the online Overleaf LaTeX documentaion](https://www.overleaf.com/learn). for a deeper understanding of **_LaTeX_**.
+
+Additionally, you can check out the Android development playlist I followed, [Workshop Android by E mds](https://www.youtube.com/playlist?list=PLRR7wjtXb1cB-jibndUw-qv79O2KQkG6U), for more insight into the app development process.
