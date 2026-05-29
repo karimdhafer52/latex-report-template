@@ -1,0 +1,606 @@
+% =========================================================
+% docs/snippets.tex
+% Compilable LaTeX Snippet Gallery
+%
+% PURPOSE:
+%   A living reference document that renders every snippet
+%   from SNIPPETS.md so the output can be visually verified.
+%
+% HOW TO COMPILE:
+%   xelatex snippets.tex   (standalone, from the docs/ folder)
+%
+% NOTE:
+%   This file is self-contained and does NOT depend on main.tex.
+%   It re-declares all required packages internally.
+% =========================================================
+
+\documentclass[12pt, a4paper]{article}
+
+% ---- Encoding & Language ----
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+
+% ---- Layout ----
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{setspace}
+\usepackage{parskip}
+
+% ---- Graphics ----
+\usepackage{graphicx}
+\usepackage{float}
+
+% ---- Colors & Boxes ----
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+% ---- Tables ----
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+% ---- Lists ----
+\usepackage{enumitem}
+
+% ---- Math ----
+\usepackage{amsmath, amssymb}
+
+% ---- Code Listings ----
+\usepackage{listingsutf8}
+\usepackage{listings}
+
+% ---- Algorithms ----
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% ---- Hyperlinks ----
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=black, urlcolor=blue}
+
+% ---- showexpl: side-by-side source + rendered output ----
+% Install via: tlmgr install showexpl
+\usepackage{showexpl}
+\lstset{explpreset={
+    language={[LaTeX]TeX},
+    basicstyle=\ttfamily\small,
+    frame=single,
+    breaklines=true,
+    tabsize=4,
+    numbers=none,
+    backgroundcolor=\color{gray!5},
+}}
+
+% =========================================================
+% COLOR DEFINITIONS (matching commands.tex)
+% =========================================================
+\definecolor{darkblue}{RGB}{0,51,102}
+\definecolor{lightblue}{RGB}{220,235,250}
+
+% =========================================================
+% CUSTOM ENVIRONMENTS (matching commands.tex)
+% =========================================================
+
+% Warning box (tcolorbox)
+\newtcolorbox{warningbox}{
+    colback=orange!5!white,
+    colframe=orange!75!black,
+    title=Attention,
+    fonttitle=\bfseries
+}
+
+% =========================================================
+% ALGORITHM FRENCH KEYWORDS (matching commands.tex)
+% =========================================================
+\algrenewcommand\algorithmicrequire{\textbf{Pré-requis:}}
+\algrenewcommand\algorithmicensure{\textbf{Garanties:}}
+\algrenewcommand\algorithmicwhile{\textbf{Tant que}}
+\algrenewcommand\algorithmicdo{\textbf{Faire}}
+\algrenewcommand\algorithmicfor{\textbf{Pour}}
+\algrenewcommand\algorithmicif{\textbf{Si}}
+\algrenewcommand\algorithmicelse{\textbf{Sinon}}
+\algrenewcommand\algorithmicfunction{\textbf{Fonction}}
+\algrenewcommand\algorithmicreturn{\textbf{Retourner}}
+\algrenewcommand\algorithmicend{\textbf{Fin}}
+\newcommand{\VarNoIndent}{\State \hspace{-0.8cm} \textbf{Var}}
+\newcommand{\DebutNoIndent}{\State \hspace{-0.8cm} \textbf{Début}}
+
+% =========================================================
+% LISTING STYLES (matching commands.tex)
+% =========================================================
+\lstdefinestyle{matlabreport}{
+    language=Matlab,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black}\itshape,
+    stringstyle=\color{red},
+    frame=single,
+    breaklines=true,
+    showstringspaces=false,
+    extendedchars=true,
+    inputencoding=utf8/latin1
+}
+
+% =========================================================
+% SECTION STYLING FOR THIS DOC
+% =========================================================
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{darkblue}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+
+% =========================================================
+% HELPER MACRO: pretty snippet label
+% =========================================================
+\newcommand{\snippetlabel}[1]{%
+    \vspace{0.5em}%
+    {\small\ttfamily\color{gray} \# #1}%
+    \vspace{0.2em}%
+}
+
+% =========================================================
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{LaTeX Snippet Gallery}} \\[0.3cm]
+    {\large \textit{Compiled reference — matches SNIPPETS.md}} \\[0.2cm]
+    {\small \today}
+\end{center}
+
+\tableofcontents
+\clearpage
+
+% =========================================================
+\section{Text Formatting}
+% =========================================================
+
+\snippetlabel{Basic formatting commands}
+
+\begin{LTXexample}[pos=r, width=0.4]
+\textit{Italic text} \\
+\textbf{Bold text} \\
+\texttt{monospace text} \\
+\textsc{Small Caps} \\
+\textit{\textbf{Bold italic}} \\
+\textcolor{darkblue}{Custom color}
+\end{LTXexample}
+
+% =========================================================
+\section{Warning Box}
+% =========================================================
+
+\snippetlabel{Custom tcolorbox — warningbox environment}
+
+\begin{warningbox}
+    \begin{itemize}[label=\textbf{$\rightarrow$}]
+        \item This template is provided as a free academic resource.
+        \item Customize it according to your institution's guidelines.
+    \end{itemize}
+\end{warningbox}
+
+\vspace{0.5em}
+{\small\color{gray}Source code:}
+\begin{lstlisting}[language={[LaTeX]TeX}, basicstyle=\ttfamily\small,
+                   frame=single, backgroundcolor=\color{gray!5}]
+\begin{warningbox}
+    \begin{itemize}[label=\textbf{$\rightarrow$}]
+        \item First warning or note here.
+        \item Second warning or note here.
+    \end{itemize}
+\end{warningbox}
+\end{lstlisting}
+
+% =========================================================
+\section{Figures}
+% =========================================================
+
+\snippetlabel{Standard figure — skeleton (no image file needed to compile)}
+
+\begin{lstlisting}[language={[LaTeX]TeX}, basicstyle=\ttfamily\small,
+                   frame=single, backgroundcolor=\color{gray!5}]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{content/chapterX/figures/fig_name.png}
+    \caption{Caption describing the figure}
+    \label{fig:fig_label}
+\end{figure}
+\end{lstlisting}
+
+\snippetlabel{Width variants}
+
+\begin{lstlisting}[language={[LaTeX]TeX}, basicstyle=\ttfamily\small,
+                   frame=single, backgroundcolor=\color{gray!5}]
+\includegraphics[width=5cm]{path/to/image.png}
+\includegraphics[height=4cm]{path/to/image.png}
+\includegraphics[scale=0.5]{path/to/image.png}
+\includegraphics[width=\linewidth]{path/to/image.png}
+\end{lstlisting}
+
+% =========================================================
+\section{Lists}
+% =========================================================
+
+\snippetlabel{Unordered list}
+
+\begin{LTXexample}[pos=r, width=0.4]
+\begin{itemize}
+    \item First item.
+    \item Second item.
+    \item Third item.
+\end{itemize}
+\end{LTXexample}
+
+\snippetlabel{Ordered list with nested bullets}
+
+\begin{LTXexample}[pos=r, width=0.4]
+\begin{enumerate}
+    \item First item.
+    \item Second item.
+    \begin{itemize}
+        \item Nested bullet.
+    \end{itemize}
+    \item Third item.
+\end{enumerate}
+\end{LTXexample}
+
+\snippetlabel{Arrow-bullet list (custom label)}
+
+\begin{LTXexample}[pos=r, width=0.4]
+\begin{itemize}[label=\textbf{$\rightarrow$}]
+    \item Arrow bullet item one.
+    \item Arrow bullet item two.
+\end{itemize}
+\end{LTXexample}
+
+\snippetlabel{Compact list (no extra item spacing)}
+
+\begin{LTXexample}[pos=r, width=0.4]
+\begin{itemize}[noitemsep]
+    \item Compact item one.
+    \item Compact item two.
+    \item Compact item three.
+\end{itemize}
+\end{LTXexample}
+
+% =========================================================
+\section{Tables}
+% =========================================================
+
+\snippetlabel{Table 1 — Colored cell grid}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \setlength{\tabcolsep}{5pt}
+    \begin{tabular}{|p{2.5cm}|p{5cm}|p{5cm}|}
+        \hline
+        \rowcolor{gray!20}
+        \textbf{Criterion} & \textbf{Option A} & \textbf{Option B} \\
+        \hline
+        \rowcolor{gray!15}
+        \textbf{Row 1}
+        & \cellcolor{green!10} Advantage A
+        & \cellcolor{blue!10} Advantage B \\
+        \hline
+        \rowcolor{gray!15}
+        \textbf{Row 2}
+        & \cellcolor{orange!10} Note A
+        & \cellcolor{red!10} Note B \\
+        \hline
+    \end{tabular}
+    \caption{Comparison table (Table 1 style)}
+    \label{tab:style1}
+\end{table}
+
+\snippetlabel{Table 2 — Dark header + alternating rows}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \setlength{\tabcolsep}{12pt}
+    \rowcolors{2}{white}{lightblue}
+    \begin{tabular}{|p{5cm}|c|p{4cm}|}
+        \hline
+        \rowcolor{darkblue}
+        \textcolor{white}{Column A} &
+        \textcolor{white}{Column B} &
+        \textcolor{white}{Column C} \\
+        \hline
+        Row data one    & Value 1 & Description 1 \\
+        Row data two    & Value 2 & Description 2 \\
+        Row data three  & Value 3 & Description 3 \\
+        \hline
+    \end{tabular}
+    \caption{Dark header + alternating rows (Table 2 style)}
+    \label{tab:style2}
+\end{table}
+
+\snippetlabel{Table 3 — Two-column comparison with alternating colors}
+
+\rowcolors{2}{gray!10}{white}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{|p{6cm}|p{6cm}|}
+        \hline
+        \rowcolor{gray!30}
+        \textbf{Aspect} & \textbf{Observation} \\
+        \hline
+        \rowcolor{blue!10}  Point A & \cellcolor{red!10} Response A \\
+        \hline
+        \rowcolor{blue!10}  Point B & \cellcolor{red!10} Response B \\
+        \hline
+        \rowcolor{blue!10}  Point C & \cellcolor{red!10} Response C \\
+        \hline
+    \end{tabular}
+    \caption{Two-column comparison (Table 3 style)}
+    \label{tab:style3}
+\end{table}
+
+\rowcolors{2}{green!10}{white}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{|p{6cm}|p{6cm}|}
+        \hline
+        \rowcolor{gray!30}
+        \textbf{Category} & \textbf{Value} \\
+        \hline
+        \rowcolor{green!10} Item A & \cellcolor{orange!20} Detail A \\
+        \hline
+        \rowcolor{green!10} Item B & \cellcolor{orange!20} Detail B \\
+        \hline
+        \rowcolor{green!10} Item C & \cellcolor{orange!20} Detail C \\
+        \hline
+    \end{tabular}
+    \caption{Green/orange variant (Table 3 style)}
+    \label{tab:style3b}
+\end{table}
+
+% =========================================================
+\section{Citations}
+% =========================================================
+
+\snippetlabel{Citation command reference (non-rendered — requires .bib file)}
+
+\begin{lstlisting}[language={[LaTeX]TeX}, basicstyle=\ttfamily\small,
+                   frame=single, backgroundcolor=\color{gray!5}]
+% Author as subject of sentence:
+\textcite{authorsyeartitle}
+% → Smith (2023) argues that...
+
+% Parenthetical citation:
+\parencite{authorsyeartitle}
+% → (Smith, 2023)
+
+% With page number:
+\parencite[42]{authorsyeartitle}
+% → (Smith, 2023, p. 42)
+
+% With prefix and page:
+\parencite[see][42]{authorsyeartitle}
+% → (see Smith, 2023, p. 42)
+
+% Multiple sources:
+\parencite{authorAyeartitle, authorByeartitle}
+% → (Smith, 2023; Jones, 2021)
+
+% Protecting author name formatting in .bib:
+author = {\protect\normalfont{Karim DHAFER}},
+\end{lstlisting}
+
+% =========================================================
+\section{Math}
+% =========================================================
+
+\snippetlabel{Inline math}
+
+\begin{LTXexample}[pos=r, width=0.4]
+The result is $x = \frac{a}{b}$
+where $a, b \in \mathbb{R}$.
+\end{LTXexample}
+
+\snippetlabel{Numbered display equation}
+
+\begin{LTXexample}[pos=r, width=0.4]
+\begin{equation}
+    E = mc^2
+    \label{eq:einstein}
+\end{equation}
+\end{LTXexample}
+
+\snippetlabel{Unnumbered display equation}
+
+\begin{LTXexample}[pos=r, width=0.4]
+\[
+    \sum_{i=1}^{n} x_i = \bar{x} \cdot n
+\]
+\end{LTXexample}
+
+\snippetlabel{Aligned multi-line equations}
+
+\begin{LTXexample}[pos=r, width=0.4]
+\begin{align}
+    f(x) &= x^2 + 2x + 1 \\
+         &= (x + 1)^2
+\end{align}
+\end{LTXexample}
+
+\snippetlabel{Common math symbols}
+
+\begin{LTXexample}[pos=r, width=0.4]
+$\forall x \in \mathbb{R}$ \\
+$\exists y \geq 0$ \\
+$\sum_{i=0}^{n} x_i$ \\
+$\int_{a}^{b} f(x)\,dx$ \\
+$\frac{p}{q}$ \quad $\sqrt{x}$ \\
+$\mathbf{v}$ \quad $\|v\|$ \\
+$A \in \mathbb{R}^{n \times n}$
+\end{LTXexample}
+
+% =========================================================
+\section{Code Listings}
+% =========================================================
+
+\snippetlabel{Java code block (default lstset style)}
+
+\begin{lstlisting}[language=Java, basicstyle=\ttfamily\small, frame=single,
+                   keywordstyle=\color{blue}\bfseries,
+                   commentstyle=\color{gray}\itshape,
+                   stringstyle=\color{orange},
+                   numbers=left, numberstyle=\tiny\color{gray},
+                   breaklines=true, showstringspaces=false,
+                   caption={Java example: event listener},
+                   label={lst:java_example}]
+private void ecouteCalcul() {
+    ((Button) findViewById(R.id.btnCalc))
+        .setOnClickListener(new Button.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Integer poids = Integer.parseInt(txtPoids.getText().toString());
+            // ... process input
+        }
+    });
+}
+\end{lstlisting}
+
+\snippetlabel{Matlab code block (matlabreport style)}
+
+\begin{lstlisting}[style=matlabreport,
+                   caption={Matlab example},
+                   label={lst:matlab_example}]
+function result = computeMean(data)
+    % Computes the arithmetic mean of a vector
+    result = sum(data) / length(data);
+end
+\end{lstlisting}
+
+\snippetlabel{External file inclusion}
+
+\begin{lstlisting}[language={[LaTeX]TeX}, basicstyle=\ttfamily\small,
+                   frame=single, backgroundcolor=\color{gray!5}]
+\lstinputlisting[language=Python]{assets/code/my_script.py}
+\end{lstlisting}
+
+\snippetlabel{Inline monospace and keyboard shortcut}
+
+\begin{LTXexample}[pos=r, width=0.4]
+Use the \texttt{main.tex} file
+as the entry point.
+
+Press \texttt{\textbf{%
+\textcolor{blue}{CTRL+SHIFT+T}}}
+to open the test dialog.
+\end{LTXexample}
+
+% =========================================================
+\section{Algorithms}
+% =========================================================
+
+\snippetlabel{Full algorithm — Doolittle LU decomposition (French keywords)}
+
+\begin{algorithm}[H]
+    \caption{Doolittle LU Decomposition}
+    \label{alg:doolittle}
+    \begin{algorithmic}[1]
+        \Require Square matrix $A$ of size $n \times n$.
+
+        \Function{Doolittle}{$A: \text{Matrix}, n: \text{Integer}$}
+        \VarNoIndent{}
+            \State $s, i, j, k, p$ : Integers
+        \DebutNoIndent
+            \For{$p \text{ from } 1 \text{ to } n$}
+                \For{$j \text{ from } p \text{ to } n$}
+                    \State $s \gets 0$
+                    \For{$k \text{ from } 1 \text{ to } p-1$}
+                        \State $s \gets s + A[p,k] \times A[k,j]$
+                    \EndFor
+                    \State $A[p,j] \gets A[p,j] - s$
+                \EndFor
+                \For{$i \text{ from } p+1 \text{ to } n$}
+                    \State $s \gets 0$
+                    \For{$k \text{ from } 1 \text{ to } p-1$}
+                        \State $s \gets s + A[i,k] \times A[k,p]$
+                    \EndFor
+                    \State $A[i,p] \gets (1 \div A[p,p]) \times (A[i,p] - s)$
+                \EndFor
+            \EndFor
+            \State \Return $A$
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+% =========================================================
+\section{Cross-References}
+% =========================================================
+
+\snippetlabel{Reference commands and label naming conventions}
+
+\begin{lstlisting}[language={[LaTeX]TeX}, basicstyle=\ttfamily\small,
+                   frame=single, backgroundcolor=\color{gray!5}]
+% Figures
+As shown in Figure~\ref{fig:fig_label}...
+
+% Tables
+See Table~\ref{tab:table_label} for details.
+
+% Equations
+From Equation~\ref{eq:einstein}, we derive...
+
+% Sections / Chapters
+As discussed in Section~\ref{sec:methodology}...
+
+% Algorithms
+Algorithm~\ref{alg:algo_label} describes the procedure.
+
+% Label naming convention:
+%   fig:name       \label{fig:architecture_diagram}
+%   tab:name       \label{tab:results_summary}
+%   eq:name        \label{eq:loss_function}
+%   sec:name       \label{sec:methodology}
+%   alg:name       \label{alg:gradient_descent}
+%   chap:name      \label{chap:introduction}
+\end{lstlisting}
+
+% =========================================================
+\section{Spacing \& Layout Utilities}
+% =========================================================
+
+\snippetlabel{Vertical spacing commands}
+
+\begin{LTXexample}[pos=r, width=0.4]
+Line A
+\smallskip
+
+Line B (smallskip)
+\medskip
+
+Line C (medskip)
+\bigskip
+
+Line D (bigskip)
+
+Line E \vspace{1cm} after 1cm
+\end{LTXexample}
+
+\snippetlabel{Horizontal rule}
+
+\begin{LTXexample}[pos=r, width=0.4]
+\rule{\linewidth}{1pt}
+\end{LTXexample}
+
+\snippetlabel{include vs input — compilation note}
+
+\begin{lstlisting}[language={[LaTeX]TeX}, basicstyle=\ttfamily\small,
+                   frame=single, backgroundcolor=\color{gray!5}]
+% For chapters — always starts a new page, supports \includeonly:
+\include{content/chapter1/chapter1}
+
+% For preamble fragments and sub-section files — no page break:
+\input{preamble/frontmatter}
+\end{lstlisting}
+
+\end{document}

@@ -1,0 +1,151 @@
+% =========================================================
+% MASTER BIBLIOGRAPHY ENTRY TYPES ARCHITECTURE
+% =========================================================
+%
+% This document defines ALL BibTeX / BibLaTeX entry types
+% and maps them to the current bibliography file structure.
+%
+% ---------------------------------------------------------
+% CURRENT FILE STRUCTURE (YOUR PROJECT)
+% ---------------------------------------------------------
+%
+% 1) books.bib
+% 2) journals.bib
+% 3) conferences.bib
+% 4) reports.bib
+% 5) websites.bib
+% 6) theses.bib (optional if separated from books.bib)
+%
+% =========================================================
+% 1. ACADEMIC PUBLICATIONS
+% =========================================================
+%
+% @article
+%   → Journal articles
+%   → FILE: journals.bib ✔
+%
+% @inproceedings
+%   → Conference papers
+%   → FILE: conferences.bib ✔
+%
+% =========================================================
+% 2. BOOKS & THESIS WORKS
+% =========================================================
+%
+% @book
+%   → Published books (ISBN, publisher)
+%   → FILE: books.bib ✔
+%
+% @mastersthesis
+% @phdthesis
+%   → Academic theses (Master / PhD)
+%   → FILE: books.bib ✔ OR theses.bib (optional split)
+%
+% NOTE:
+% - If project is small → keep in books.bib
+% - If project is large → separate into theses.bib
+%
+% =========================================================
+% 3. BOOK PARTS / EDITED VOLUMES
+% =========================================================
+%
+% @inbook
+%   → Chapter or section inside a book
+%   → FILE: books.bib ✔
+%
+% @incollection
+%   → Chapter in edited book (Springer, edited volumes)
+%   → FILE: books.bib ✔
+%
+% =========================================================
+% 4. TECHNICAL DOCUMENTATION
+% =========================================================
+%
+% @techreport
+%   → Institutional / lab / company reports
+%   → FILE: reports.bib ✔
+%
+% @manual
+%   → Technical manuals (hardware/software documentation)
+%   → FILE: reports.bib ✔ (or websites.bib if online-only)
+%
+% @unpublished
+%   → Draft papers / preprints not formally published
+%   → FILE: reports.bib ✔ (or academic if research-oriented)
+%
+% =========================================================
+% 5. SOFTWARE & DATA (MODERN PROJECTS)
+% =========================================================
+%
+% @software   ⭐ IMPORTANT (VERY RECOMMENDED)
+%   → Software tools, GitHub projects, libraries, frameworks
+%   → Location: bibliography/software.bib  (ROOT level)
+%   → FILE: software.bib ✔
+%
+%
+% @dataset    ⭐ IMPORTANT FOR AI / ML / DATA PROJECTS
+%   → Public datasets (Kaggle, UCI, government datasets)
+%   → Location: bibliography/datasets.bib  (ROOT level)
+%   → FILE: datasets.bib ✔
+%
+% =========================================================
+% 6. ONLINE & WEB SOURCES
+% =========================================================
+%
+% @online
+%   → Websites, documentation, blogs, tutorials
+%   → FILE: websites.bib ✔
+%
+% =========================================================
+% 7. SPECIAL / FALLBACK TYPES
+% =========================================================
+%
+% @misc
+%   → Generic fallback entry
+%   → FILE: reports.bib ✔
+%
+% NOTE:
+% - Should NOT be used unless necessary
+% - Always prefer a more specific type
+%
+% =========================================================
+% 8. OPTIONAL / SPECIALIZED TYPES (ADVANCED)
+% =========================================================
+%
+% @patent
+%   → Patents (industrial inventions, intellectual property)
+%   → Location: bibliography/patents.bib  (ROOT level)
+%   → FILE: reports.bib ✔
+%
+% RECOMMENDATION:
+%   - NOT usually needed in engineering student thesis
+%   - Only create if actually needed
+%
+% =========================================================
+% FINAL ARCHITECTURE SUMMARY
+% =========================================================
+%
+% CORE FILES (RECOMMENDED):
+%
+%   books.bib       → books + inbook + incollection + theses
+%   journals.bib    → @article
+%   conferences.bib → @inproceedings
+%   reports.bib     → @techreport + @misc + optional software/dataset
+%   websites.bib    → @online + manuals (if web-based)
+%
+% OPTIONAL (FOR ADVANCED PROJECTS):
+%
+%   theses.bib      → only theses (if separated)
+%   software.bib    → @software (best practice)
+%   datasets.bib    → @dataset (AI/ML projects)
+%   patents.bib     → @patent (rare)
+%
+% =========================================================
+% DESIGN PRINCIPLE:
+% =========================================================
+%
+% "Organize by MEANING, not by BibTeX syntax."
+% - academic/  → research literature (journals, conferences, theses)
+% - root-level → tools, datasets, patents (non-literature assets)
+%
+% =========================================================

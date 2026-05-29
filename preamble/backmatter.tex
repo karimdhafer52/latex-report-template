@@ -1,0 +1,59 @@
+% ============================================
+% BACK MATTER
+% ============================================
+% The back matter typically includes:
+% - Bibliography
+% - Appendices / Annexes
+% - Indices (if any)
+%
+% In this part, chapter numbering is usually disabled or changed:
+% - Appendices are introduced using \appendix
+% - Chapter numbering is switched to letters (A, B, C, ...)
+%   instead of numbers (1, 2, 3, ...)
+% - This effectively separates appendices from the main chapters
+%
+% Depending on academic requirements, page numbering may:
+% - Continue Arabic numbering, or
+% - Be reset or modified
+% ============================================
+
+% ================= BIBLIOGRAPHY =================
+% \addcontentsline{toc}{chapter}{Bibliography}
+\clearpage
+\nocite{*}
+
+% ============================================
+% BIBLIOGRAPHY (ALL NON-WEB SOURCES)
+% ============================================
+\printbibliography[
+  title={Bibliography},
+  heading=bibintoc,
+  notkeyword=web,
+  nottype=online
+]
+
+% ============================================
+% WEBOGRAPHY (WEBSITES ONLY)
+% ============================================
+\clearpage
+
+\printbibliography[
+  title={Webography},
+  heading=bibintoc,
+  keyword=web,
+  type=online
+]
+
+% ================= APPENDICES =================
+\iffalse
+    \clearpage
+    \appendix
+\fi
+% After \appendix:
+% - chapters are automatically numbered A, B, C...
+% - chapter numbering continues but in appendix format
+
+\iffalse
+    \addcontentsline{toc}{chapter}{Appendices}
+    \input{content/annexes/annexA}
+\fi

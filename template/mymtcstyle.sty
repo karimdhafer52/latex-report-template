@@ -1,0 +1,44 @@
+% ================================================================
+% mymtcstyle.sty
+% Custom styling for minitoc
+% ================================================================
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mymtcstyle}[2025/01/01 Custom minitoc style]
+
+% ---------------------------------------------------------------
+% Change title of minitoc
+% ---------------------------------------------------------------
+\renewcommand{\mtctitle}{Plan}
+
+% ---------------------------------------------------------------
+% Remove all default minitoc rules (lines above/below)
+% ---------------------------------------------------------------
+\renewcommand{\mtc@rule}{}            % Remove horizontal rules
+\renewcommand{\mtc@beforetitle}{}     % No space or rule before title
+\renewcommand{\mtc@aftertitle}{}      % No rule or extra space after title
+
+% ---------------------------------------------------------------
+% Font and indentation tuning
+% ---------------------------------------------------------------
+\renewcommand{\mtifont}{\large\bfseries}   % Title font
+\renewcommand{\mtcfont}{\normalsize}       % Section entries font
+\renewcommand{\mtcSfont}{\normalsize}      % Subsection entries font
+\renewcommand{\mtcSSfont}{\normalsize}     % Subsubsection entries font
+
+% Optional: Remove section numbers in mini-TOC (uncomment if desired)
+% \renewcommand{\mtc@seccntformat}[1]{}
+
+% ---------------------------------------------------------------
+% Spacing customization
+% ---------------------------------------------------------------
+\setlength{\mtcindent}{0pt}           % No indentation for entries
+\setlength{\mtcskip}{5pt}             % Vertical spacing between items
+\setlength{\mtcaftertitle}{6pt}       % Space after title
+
+% ================================================================
+% End of package
+% ================================================================
+
+
+% In packages.tex file call \usepackage{template/mymtcstyle}

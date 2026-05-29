@@ -1,0 +1,49 @@
+# LaTeX build artifacts
+*.acn
+*.acr
+*.alg
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.listing
+*.lof
+*.log
+*.lot
+*.maf
+*.mtc
+*.mtc*
+*.nav
+*.out
+# *.pdf           # optional — only exclude if you don't want to commit the compiled PDF
+*.pyg  
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb       
+
+# VS Code
+.vscode/
+!.vscode/settings.json   # Optional: Un-comment if you want to share workspace settings
+!.vscode/tasks.json      # Optional: Un-comment if you want to share build tasks
+*.code-workspace
+
+## --- Backup / Temp Files ---
+*~
+*.bak
+*.swp
+*.tmp
+
+## --- System Files ---
+.DS_Store
+Thumbs.db

@@ -1,0 +1,192 @@
+% =========================================================
+% CITATION STYLE GUIDE
+% =========================================================
+%
+% This document explains:
+% 1) Citation styles (numeric vs authoryear)
+% 2) Citation commands usage in BibLaTeX
+%
+% NOTE:
+% - This file is for documentation purposes only
+% - It is NOT meant to be compiled
+%
+% =========================================================
+
+
+% =========================================================
+% 1. CITATION STYLES OVERVIEW
+% =========================================================
+%
+% In BibLaTeX, the citation style determines how references
+% appear inside the text.
+%
+% ---------------------------------------------------------
+
+
+% =========================================================
+% NUMERIC STYLE
+% =========================================================
+%
+% CONFIGURATION:
+%
+% \usepackage[backend=biber, style=numeric]{biblatex}
+%
+% EXAMPLE CITATION:
+%   [1]
+%
+% COMMON USAGE:
+%   - Engineering
+%   - Computer Science
+%   - Physics
+%   - Technical reports
+%
+% ADVANTAGES:
+%   - Clean and compact
+%   - Ideal for documents with many references
+%   - Widely used in technical writing
+%
+% DISADVANTAGES:
+%   - Reader must check bibliography for author details
+%
+% ---------------------------------------------------------
+
+
+% =========================================================
+% AUTHOR-YEAR STYLE
+% =========================================================
+%
+% CONFIGURATION:
+%
+% \usepackage[backend=biber, style=authoryear]{biblatex}
+%
+% EXAMPLE CITATION:
+%   (Smith, 2023)
+%
+% COMMON USAGE:
+%   - Social Sciences (Psychology, Sociology)
+%   - Business and Economics
+%   - Humanities
+%
+% ADVANTAGES:
+%   - Shows author and year directly
+%   - Useful for discussing research trends
+%
+% DISADVANTAGES:
+%   - Can clutter text with many citations
+%
+% ---------------------------------------------------------
+
+
+% =========================================================
+% RECOMMENDATION
+% =========================================================
+%
+% - Use NUMERIC for:
+%     * Technical reports
+%     * Engineering / Computer Science projects
+%
+% - Use AUTHOR-YEAR for:
+%     * Literature reviews
+%     * Theoretical or discussion-heavy writing
+%
+% ---------------------------------------------------------
+
+
+% =========================================================
+% 2. CITATION COMMANDS (BIBLATEX)
+% =========================================================
+%
+% BibLaTeX provides multiple citation commands depending
+% on how the reference is used in the sentence.
+%
+% ---------------------------------------------------------
+
+
+% =========================================================
+% \cite{}
+% =========================================================
+%
+% USAGE:
+%   \cite{key}
+%
+% BEHAVIOR:
+%   - Generic citation command
+%   - Output depends on selected style
+%
+% EXAMPLES:
+%   Numeric:       [1]
+%   Author-year:   (Smith, 2023)
+%
+% USE CASE:
+%   - General-purpose citation
+%
+% ---------------------------------------------------------
+
+
+% =========================================================
+% \parencite{}
+% =========================================================
+%
+% USAGE:
+%   \parencite{key}
+%
+% BEHAVIOR:
+%   - Citation appears inside parentheses
+%
+% EXAMPLES:
+%   (Smith, 2023)
+%   [1]
+%
+% USE CASE:
+%   - End of sentence references
+%   - Supporting citations
+%
+% ---------------------------------------------------------
+
+
+% =========================================================
+% \textcite{}
+% =========================================================
+%
+% USAGE:
+%   \textcite{key}
+%
+% BEHAVIOR:
+%   - Author name becomes part of the sentence
+%
+% EXAMPLE:
+%   Smith (2023) argues that...
+%
+% USE CASE:
+%   - When explicitly referring to an author
+%   - Literature discussion
+%
+% ---------------------------------------------------------
+
+
+% =========================================================
+% QUICK COMPARISON
+% =========================================================
+%
+% COMMAND        OUTPUT                  USE CASE
+% ---------------------------------------------------------
+% \cite{}        [1] / (Smith, 2023)     Generic
+% \parencite{}   (Smith, 2023)           End of sentence
+% \textcite{}    Smith (2023)            Author in text
+%
+% ---------------------------------------------------------
+
+
+% =========================================================
+% BEST PRACTICE
+% =========================================================
+%
+% - Use \textcite{} when discussing an author directly
+% - Use \parencite{} for supporting references
+% - Use \cite{} for general or mixed usage
+%
+% - Keep usage consistent throughout the document
+%
+% =========================================================
+% END OF FILE
+% =========================================================

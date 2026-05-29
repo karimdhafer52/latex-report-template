@@ -1,0 +1,56 @@
+% =========================================================
+% reports.bib — Technical Reports & Miscellaneous Works
+% =========================================================
+%
+% This file contains institutional reports and non-standard publications.
+%
+% �� CONTENT TYPES:
+% - technical reports from universities, labs, companies
+% - whitepapers and internal research documents
+% - documents that are not formal books or journal papers
+%
+% Included BibTeX types:
+%
+% @techreport     → Official technical reports (labs, institutions, companies)
+%
+% @misc           → Fallback entry type
+%                   (used when no other BibTeX type fits)
+%
+% =========================================================
+%
+% ⚠️ NOTE:
+% @misc should be avoided when possible.
+% Prefer more specific types like @techreport or @online.
+%
+% =========================================================
+@techreport{authorsyeartitle,
+  author       = {{Last Name, First Name and Last Name, First Name}},
+  title        = {Title of the Report},
+  institution  = {Institution Name},
+  year         = {XYZT},
+  month        = mmm,
+  number       = {XYZ},
+  type         = {Report Type},
+  url          = {https://example.com/report.pdf},
+  note         = {Additional notes about the report}
+}
+
+@misc{authorsyeartitle,
+  author       = {{Last Name, First Name and Last Name, First Name}},
+  title        = {Title of the Document},
+  subtitle     = {Optional Subtitle},
+  year         = {XYZT},
+  howpublished = {How it was published (e.g., online, print, presentation)},
+  note         = {Additional notes about the document}
+}
+
+@report{authorsyeartitle,
+  author      = {\protect\normalfont{Institution Name}},
+  title       = {Title of the Report},
+  year        = {XYZT},
+  institution = {Institution Name},
+  number      = {XYZ},
+  type        = {Report Type},
+  url         = {https://example.com/report.pdf},
+  note        = {Additional notes about the report}
+}

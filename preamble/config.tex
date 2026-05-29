@@ -1,0 +1,68 @@
+% ============================================
+% GLOBAL DOCUMENT CONFIGURATION
+% ============================================
+
+% Page margins
+\geometry{margin=2.5cm}
+
+% Line spacing if needed
+% \onehalfspacing
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=red,
+}
+
+% ----------------------------
+% Document formatting settings
+% ----------------------------
+
+% ----------- Section numbering style -----------
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+% \renewcommand{\thesection}{\arabic{section}.}
+% \renewcommand{\thesubsection}{\thesection\arabic{subsection}.}
+% \renewcommand{\thesubsubsection}{\thesubsection\arabic{subsubsection}.}
+
+% --------------- Numbering depth ---------------
+\setcounter{secnumdepth}{3}   % chapters, sections, subsections, subsubsections
+\setcounter{tocdepth}{2}      % TOC shows chapters + sections + subsections
+\setcounter{minitocdepth}{1}  % minitoc shows sections only
+
+
+% ============================================
+% GRAPHICS CONFIGURATION
+% ============================================
+
+% Global image search paths (shared assets)
+\graphicspath{
+    {assets/images/}
+}
+
+% --DIDN't WORK
+% Name style fix by preventing it from being printed small caps
+% PERSON NAMES
+% \renewcommand*{\mkbibnamefamily}[1]{\textnormal{#1}}
+% \renewcommand*{\mkbibnamegiven}[1]{\textnormal{#1}}
+% CORPORATE AUTHORS / INSTITUTIONS
+% \DeclareFieldFormat{institution}{\textnormal{#1}}
+% \DeclareFieldFormat{organization}{\textnormal{#1}}
+% \DeclareNameWrapperFormat{sortname}{%
+%   #1%
+% }
+
+
+\iffalse
+    % ============================================
+    % FIGURES CONFIGURATION
+    % ============================================
+    
+    % Future improvement: reset figure numbering per chapter
+
+    \RequirePackage{chngcntr}
+    % \counterwithin{figure}{chapter}  % Uncomment to reset figure numbers per chapter
+\fi
