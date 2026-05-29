@@ -327,4 +327,3 @@ See `docs/citation-style-guide.tex` and `docs/bibliography-architecture.tex` for
 - [Polyglossia Documentation](https://ctan.org/pkg/polyglossia) — multilingual setup reference
 - [The Not So Short Introduction to LaTeX](https://tobi.oetiker.ch/lshort/lshort.pdf) — recommended beginner-to-intermediate guide
 - [`ROADMAP.md`](./ROADMAP.md) — pending fixes and advanced learning path for this project
->>>>>>> 8a26f06 (refactor(architecture): migrate to modular multi-chapter LaTeX structure)
